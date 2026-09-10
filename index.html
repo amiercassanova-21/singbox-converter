@@ -115,6 +115,13 @@
     box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 4px 8px rgba(0,0,0,.6);
   }
   .act:active{transform:translateY(1px)}
+  .list{margin-top:12px; display:none}
+  .list.on{display:block}
+  .listhead{font-size:10.5px; color:var(--tx3); margin:0 0 8px}
+  .arow{display:flex; gap:9px; align-items:center; margin-bottom:7px}
+  .arow input[type=checkbox]{accent-color:var(--gold); width:16px; height:16px; flex:0 0 auto}
+  .arow input[type=text]{padding:7px 9px; font-size:11px; border-radius:9px}
+  .arow.off input[type=text]{opacity:.4}
   .log{margin-top:10px; font-size:10.5px; color:var(--tx3); border-left:2px solid #3a3222; padding-left:9px; max-height:120px; overflow:auto}
   .log .bad{color:var(--bad)} .log .ok{color:var(--ok)}
   .foot{margin-top:15px; text-align:center; font-size:10px; color:#6a707d}
@@ -258,6 +265,12 @@
     <div class="stat"><span>Trojan</span><b id="sT">0</b></div>
   </div>
 
+  <div class="list" id="list">
+    <p class="listhead">Hapus centang untuk membuang akun. Nama boleh diubah, lalu tekan Buat ulang.</p>
+    <div id="rows"></div>
+    <button class="act" id="btnRegen" style="width:100%; margin-top:4px"><svg class="ic" style="color:var(--gold-t)" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg> Buat ulang dari daftar</button>
+  </div>
+
   <pre id="out" class="empty">Tempel link akun di atas, lalu tekan tombol emas.</pre>
 
   <div class="acts">
@@ -267,7 +280,8 @@
 
   <div class="log" id="log"></div>
 
-  <div class="foot">© 2026 By: Amier Cassanova · <a href="https://t.me/kang_rebahan">Telegram</a></div>
+  <div class="foot">Semua diproses di HP ini. Link akun tidak dikirim ke mana pun dan tidak ikut tersimpan.<br>
+    © 2026 By: Amier Cassanova · <a href="https://t.me/kang_rebahan">Telegram</a></div>
 
 </div></div>
 <div class="toast" id="toast"></div>
@@ -307,6 +321,26 @@ function toast(m,bad){
   t.style.color = bad?"var(--bad)":"var(--gold-t)";
   t.classList.add("on"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("on"),2300);
 }
+const SET_KEY="cassanova_singbox_setting";
+const SET_IDS=["ver","ui","ctrl","grp","spd","quic","flag"];
+const SET_CHK=["oLb","oSplit","oWa","oIns"];
+function saveSet(){
+  try{
+    const s={};
+    SET_IDS.forEach(i=>s[i]=$(i).value);
+    SET_CHK.forEach(i=>s[i]=$(i).checked);
+    localStorage.setItem(SET_KEY, JSON.stringify(s));
+  }catch(e){}
+}
+function loadSet(){
+  try{
+    const s=JSON.parse(localStorage.getItem(SET_KEY)||"null");
+    if(!s) return;
+    SET_IDS.forEach(i=>{ if(s[i]!=null) $(i).value=s[i]; });
+    SET_CHK.forEach(i=>{ if(typeof s[i]==="boolean") $(i).checked=s[i]; });
+  }catch(e){}
+}
+
 function sync(){
   $("dVer").textContent = VER[$("ver").value].note;
   $("dUi").textContent = D.ui[$("ui").value];
@@ -320,6 +354,7 @@ function sync(){
   $("dIns").textContent = $("oIns").checked ? D.ins.on : D.ins.off;
   $("wQuic").classList.toggle("on", $("quic").value==="all" && !$("oWa").checked);
   $("wCtrl").classList.toggle("on", !okCtrl($("ctrl").value));
+  saveSet();
 }
 function okCtrl(v){
   const m = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3}):(\d{2,5})$/.exec(v.trim());
@@ -447,16 +482,18 @@ const KIND={ TLS:["🔒 Auto VLESS TLS"], NTLS:["🔓 Auto VLESS NTLS"], VMESS:[
 const QDOM=["googlevideo.com","youtube.com","youtu.be","ytimg.com","tiktokcdn.com","tiktokv.com",
   "tiktok.com","facebook.com","fbcdn.net","instagram.com","cdninstagram.com"];
 
-function build(accs, o){
+function build(accs, o, override){
   const sp=SPEED[o.spd], core=VER[o.ver].core;
   const tags=[], obs=[], used={}, cnt={};
-  accs.forEach(a=>{
+  accs.forEach((a,i)=>{
     const k=kindOf(a); cnt[k]=(cnt[k]||0)+1;
     const flag=detectFlag(a,o.flag);
-    let tag=k+"-"+String(cnt[k]).padStart(2,"0")+" "+(flag?flag+" ":"")+label(a);
+    let tag=(override && override[i]) ? override[i]
+      : k+"-"+String(cnt[k]).padStart(2,"0")+" "+(flag?flag+" ":"")+label(a);
     while(used[tag]) tag+="·";
     used[tag]=1; tags.push(tag); obs.push(outboundOf(a,tag,o.ins));
   });
+  build.tags=tags;
 
   const groups=[];
   const add=(tag,list)=>{ if(list.length) groups.push({ type:"urltest", tag, outbounds:list.slice(),
@@ -518,14 +555,54 @@ function build(accs, o){
   };
 }
 
+let ACCS=[], ROWS=[];
+
+function readOpt(){
+  return { ver:$("ver").value, ui:$("ui").value, ctrl:$("ctrl").value.trim(),
+    grp:parseInt($("grp").value,10), spd:$("spd").value, quic:$("quic").value, flag:$("flag").value,
+    lb:$("oLb").checked, split:$("oSplit").checked, wa:$("oWa").checked, ins:$("oIns").checked };
+}
+function countStat(list){
+  const c={vless:0,vmess:0,trojan:0};
+  list.forEach(a=>c[a.proto]++);
+  $("sAll").textContent=list.length; $("sV").textContent=c.vless;
+  $("sM").textContent=c.vmess; $("sT").textContent=c.trojan;
+}
+function renderRows(){
+  const box=$("rows");
+  box.innerHTML="";
+  ROWS.forEach(r=>{
+    const row=document.createElement("div");
+    row.className="arow"+(r.on?"":" off");
+    const cb=document.createElement("input");
+    cb.type="checkbox"; cb.checked=r.on;
+    cb.onchange=()=>{ r.on=cb.checked; row.className="arow"+(r.on?"":" off"); };
+    const tx=document.createElement("input");
+    tx.type="text"; tx.value=r.tag;
+    tx.oninput=()=>{ r.tag=tx.value; };
+    row.appendChild(cb); row.appendChild(tx); box.appendChild(row);
+  });
+  $("list").classList.toggle("on", ROWS.length>0);
+}
+function regen(){
+  if(!ACCS.length) return toast("Belum ada akun",true);
+  if(!okCtrl($("ctrl").value)){ sync(); return toast("Alamat dashboard keliru",true); }
+  const o=readOpt(), keep=[], names=[];
+  ROWS.forEach((r,i)=>{ if(r.on){ keep.push(ACCS[i]); names.push(r.tag.trim()||null); } });
+  if(!keep.length) return toast("Semua akun dimatikan",true);
+  JSONOUT=JSON.stringify(build(keep,o,names),null,2);
+  FNAME=VER[o.ver].file;
+  countStat(keep);
+  $("out").className=""; $("out").textContent=JSONOUT;
+  toast("Config dibuat ulang — "+keep.length+" akun");
+}
+
 function run(){
   if(!okCtrl($("ctrl").value)){ sync(); return toast("Alamat dashboard keliru",true); }
   const lines=expand($("uri").value);
   if(!lines.length) return toast("Belum ada link yang ditempel",true);
 
-  const o={ ver:$("ver").value, ui:$("ui").value, ctrl:$("ctrl").value.trim(),
-    grp:parseInt($("grp").value,10), spd:$("spd").value, quic:$("quic").value, flag:$("flag").value,
-    lb:$("oLb").checked, split:$("oSplit").checked, wa:$("oWa").checked, ins:$("oIns").checked };
+  const o=readOpt();
 
   const accs=[], seen={}, notes=[]; let dup=0;
   lines.forEach((l,i)=>{
@@ -542,16 +619,18 @@ function run(){
 
   JSONOUT=JSON.stringify(build(accs,o),null,2);
   FNAME=VER[o.ver].file;
-
-  const c={vless:0,vmess:0,trojan:0}; accs.forEach(a=>c[a.proto]++);
-  $("sAll").textContent=accs.length; $("sV").textContent=c.vless;
-  $("sM").textContent=c.vmess; $("sT").textContent=c.trojan;
+  ACCS=accs;
+  ROWS=build.tags.map(t=>({tag:t, on:true}));
+  renderRows();
+  countStat(accs);
 
   $("out").className=""; $("out").textContent=JSONOUT;
   notes.unshift('<div class="ok">'+accs.length+" akun dipakai"+(dup?", "+dup+" duplikat dibuang":"")+".</div>");
   $("log").innerHTML=notes.join("");
   toast("Config siap — "+accs.length+" akun");
 }
+
+$("btnRegen").onclick=regen;
 
 $("btnGo").onclick=run;
 $("btnPaste").onclick=async()=>{
@@ -564,7 +643,8 @@ $("btnPaste").onclick=async()=>{
   }catch(e){ $("uri").focus(); toast("Tempel manual lewat menu keyboard",true); }
 };
 $("btnClear").onclick=()=>{
-  $("uri").value=""; JSONOUT="";
+  $("uri").value=""; JSONOUT=""; ACCS=[]; ROWS=[];
+  renderRows();
   ["sAll","sV","sM","sT"].forEach(i=>$(i).textContent="0");
   $("log").innerHTML=""; $("out").className="empty";
   $("out").textContent="Tempel link akun di atas, lalu tekan tombol emas.";
@@ -582,6 +662,7 @@ $("btnDl").onclick=()=>{
   const a=document.createElement("a"); a.href=u; a.download=FNAME; a.click();
   URL.revokeObjectURL(u); toast("Tersimpan: "+FNAME);
 };
+loadSet();
 sync();
 </script>
 </body>
