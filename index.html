@@ -1,0 +1,1050 @@
+#### CREATED BY : t.me/bitzblackbot ####
+### JOIN https://t.me/freevlesstrojan ###
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  ipv6: false
+  use-host: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - msftconnecttest.com
+    - msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - +.nflxvideo.net
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+
+proxies:
+- name: "01 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo1.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo1.cassanova.my.id
+
+- name: "01 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo1.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo1.cassanova.my.id
+      
+- name: "02 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo2.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo2.cassanova.my.id
+
+- name: "02 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo2.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo2.cassanova.my.id
+      
+- name: "03 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo3.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo3.cassanova.my.id
+
+- name: "03 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo3.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo3.cassanova.my.id
+      
+- name: "04 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo4.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo4.cassanova.my.id
+
+- name: "04 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo4.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo4.cassanova.my.id
+      
+- name: "05 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo5.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo5.cassanova.my.id
+
+- name: "05 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo5.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo5.cassanova.my.id
+      
+- name: "06 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo6.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo6.cassanova.my.id
+
+- name: "06 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo6.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo6.cassanova.my.id
+      
+- name: "07 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo7.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo7.cassanova.my.id
+
+- name: "07 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo7.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo7.cassanova.my.id
+      
+- name: "08 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo8.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo8.cassanova.my.id
+
+- name: "08 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo8.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo8.cassanova.my.id
+      
+- name: "09 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo9.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo9.cassanova.my.id
+
+- name: "09 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo9.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo9.cassanova.my.id
+      
+- name: "10 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vless
+  uuid: 6f02eec7-d231-4243-ad50-df59d8063d84
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: speed.olinol.de5.net
+  alterId: 0
+  ws-opts:
+    path: "/lifetime"
+    headers:
+      Host: speed.olinol.de5.net
+
+- name: "10 b"
+  server: quiz.int.vidio.com
+  port: 443
+  type: trojan
+  password: lifetime
+  skip-cert-verify: true
+  sni: faster.olinol.de5.net
+  network: ws
+  ws-opts:
+    path: /lifetime
+    headers:
+      Host: faster.olinol.de5.net
+  udp: true
+  
+- name: "11 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo11.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo11.cassanova.my.id
+
+- name: "11 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo11.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo11.cassanova.my.id
+
+- name: "12 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo12.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo12.cassanova.my.id
+
+- name: "12 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo12.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo12.cassanova.my.id
+      
+- name: "13 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sdgo13.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sdgo13.cassanova.my.id
+
+- name: "13 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sdgo13.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sdgo13.cassanova.my.id
+      
+- name: "14 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo14.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo14.cassanova.my.id
+
+- name: "14 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo14.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo14.cassanova.my.id
+      
+- name: "15 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo15.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo15.cassanova.my.id
+
+- name: "15 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo15.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo15.cassanova.my.id
+      
+- name: "16 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo16.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo16.cassanova.my.id
+
+- name: "16 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo16.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo16.cassanova.my.id
+      
+- name: "17 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo17.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo17.cassanova.my.id
+
+- name: "17 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo17.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo17.cassanova.my.id
+      
+- name: "18 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo18.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo18.cassanova.my.id
+
+- name: "18 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo18.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo18.cassanova.my.id
+      
+- name: "19 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo19.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo19.cassanova.my.id
+
+- name: "19 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo19.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo19.cassanova.my.id
+      
+- name: "20 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo20.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo20.cassanova.my.id
+
+- name: "20 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo20.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo20.cassanova.my.id
+      
+- name: "21 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo21.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo21.cassanova.my.id
+
+- name: "21 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo21.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo21.cassanova.my.id
+
+- name: "22 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo22.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo22.cassanova.my.id
+
+- name: "22 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo22.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo22.cassanova.my.id
+
+- name: "23 a"
+  server: quiz.int.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo23.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo23.cassanova.my.id
+
+- name: "23 b"
+  server: quiz.vidio.com
+  port: 443
+  type: vmess
+  uuid: c6c1760f-f6af-4a54-8600-cf9c9971f7d8
+  cipher: auto
+  tls: true
+  udp: true
+  skip-cert-verify: true
+  network: ws
+  servername: sgdo23.cassanova.my.id
+  alterId: 0
+  ws-opts:
+    path: "/vmess"
+    headers:
+      Host: sgdo23.cassanova.my.id
+      
+proxy-groups:
+- name: INTERNET
+  type: select
+  disable-udp: false
+  proxies:
+  - BEST-PING
+  - "01 a"
+  - "01 b"
+  - "02 a"
+  - "02 b"
+  - "03 a"
+  - "03 b"
+  - "04 a"
+  - "04 b"
+  - "05 a"
+  - "05 b"
+  - "06 a"
+  - "06 b"
+  - "07 a"
+  - "07 b"
+  - "08 a"
+  - "08 b"
+  - "09 a"
+  - "09 b"
+  - "10 a"
+  - "10 b"
+  - "11 a"
+  - "11 b"
+  - "12 a"
+  - "12 b"
+  - "13 a"
+  - "13 b"
+  - "14 a"
+  - "14 b"
+  - "15 a"
+  - "15 b"
+  - "16 a"
+  - "16 b"
+  - "17 a"
+  - "17 b"
+  - "18 a"
+  - "18 b"
+  - "19 a"
+  - "19 b"
+  - "20 a"
+  - "20 b"
+  - "21 a"
+  - "21 b"
+  - "22 a"
+  - "22 b"
+  - "23 a"
+  - "23 b"
+- name: ADS
+  type: select
+  disable-udp: false
+  proxies:
+  - REJECT
+  - INTERNET
+- name: BEST-PING
+  type: url-test
+  url: https://detectportal.firefox.com/success.txt
+  interval: 60
+  proxies:
+  - "01 a"
+  - "01 b"
+  - "02 a"
+  - "02 b"
+  - "03 a"
+  - "03 b"
+  - "04 a"
+  - "04 b"
+  - "05 a"
+  - "05 b"
+  - "06 a"
+  - "06 b"
+  - "07 a"
+  - "07 b"
+  - "08 a"
+  - "08 b"
+  - "09 a"
+  - "09 b"
+  - "10 a"
+  - "10 b"
+  - "11 a"
+  - "11 b"
+  - "12 a"
+  - "12 b"
+  - "13 a"
+  - "13 b"
+  - "14 a"
+  - "14 b"
+  - "15 a"
+  - "15 b"
+  - "16 a"
+  - "16 b"
+  - "17 a"
+  - "17 b"
+  - "18 a"
+  - "18 b"
+  - "19 a"
+  - "19 b"
+  - "20 a"
+  - "20 b"
+  - "21 a"
+  - "21 b"
+  - "22 a"
+  - "22 b"
+  - "23 a"
+  - "23 b"
+rule-providers:
+  rule_hijacking:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_hijacking.yaml"
+    url: https://raw.githubusercontent.com/malikshi/open_clash/main/rule_provider/rule_hijacking.yaml
+  rule_privacy:
+    type: file
+    behavior: classical
+    url: https://raw.githubusercontent.com/malikshi/open_clash/main/rule_provider/rule_privacy.yaml
+    path: "./rule_provider/rule_privacy.yaml"
+  rule_basicads:
+    type: file
+    behavior: domain
+    url: https://raw.githubusercontent.com/malikshi/open_clash/main/rule_provider/rule_basicads.yaml
+    path: "./rule_provider/rule_basicads.yaml"
+  rule_personalads:
+    type: file
+    behavior: classical
+    url: https://raw.githubusercontent.com/malikshi/open_clash/main/rule_provider/rule_personalads.yaml
+    path: "./rule_provider/rule_personalads.yaml"
+rules:
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- RULE-SET,rule_personalads,ADS
+- RULE-SET,rule_basicads,ADS
+- RULE-SET,rule_hijacking,ADS
+- RULE-SET,rule_privacy,ADS
+- MATCH,INTERNET
