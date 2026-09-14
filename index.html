@@ -6,31 +6,64 @@
 <title>CASSANOVA — Sing-box Multi Akun</title>
 <style>
   :root{
-    --bg:#080808; --card:#14161c; --sunk:#0b0d12; --line:#2a2e38; --line2:#454b59;
-    --gold:#c9a13c; --gold-l:#f7e3a8; --gold-t:#e8c874; --gold-d:#6b5522;
+    --bg:#070b12; --card:#111722; --sunk:#0a0f18; --line:#2a2e38; --line2:#454b59;
+    --gold:#e0b23a; --gold-l:#fff0b8; --gold-t:#f2c968; --gold-d:#8a6a1e;
     --tx:#eef1f6; --tx2:#a8afbc; --tx3:#8e95a3; --bad:#e2726f; --ok:#7fc4a3;
   }
   *{box-sizing:border-box}
   body{
     margin:0; padding:18px 12px 34px;
-    background:radial-gradient(700px 320px at 50% 0, #1a1508 0%, transparent 68%), var(--bg);
+    background:
+      radial-gradient(620px 240px at 50% -30px, rgba(245,205,95,.22) 0%, transparent 72%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 74px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 74px),
+      radial-gradient(900px 520px at 50% 0, #0f1826 0%, transparent 78%), var(--bg);
     color:var(--tx); font-family:"Segoe UI",Roboto,-apple-system,Arial,sans-serif;
     font-size:14px; line-height:1.5;
   }
   .wrap{max-width:620px; margin:0 auto}
+  .head-card{
+    position:relative; text-align:center; padding:26px 18px 24px; border-radius:26px;
+    background:linear-gradient(180deg,#18202e,#111826 55%,#0d1421);
+    border:1px solid rgba(224,178,58,.55);
+    box-shadow:0 0 34px rgba(224,178,58,.18), 0 14px 30px rgba(0,0,0,.7),
+               inset 0 1px 0 rgba(255,240,184,.10);
+  }
+  .head-card::before{
+    content:""; position:absolute; left:20%; right:20%; top:-6px; height:12px; border-radius:99px;
+    background:linear-gradient(90deg,transparent,rgba(255,225,140,.75),#fff3c8,rgba(255,225,140,.75),transparent);
+    filter:blur(7px); opacity:.95;
+  }
+  .live{
+    display:inline-flex; align-items:center; gap:7px; font-size:10px; letter-spacing:.12em;
+    color:var(--gold-t); border:1px solid var(--gold-d); border-radius:99px; padding:5px 14px;
+    background:rgba(224,178,58,.07); box-shadow:inset 0 1px 0 rgba(255,240,184,.14);
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px #4ade80; display:block}
+  .tagline{margin:10px 0 0; font-size:12px; color:var(--tx2); line-height:1.55}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; justify-content:center; margin-top:13px}
+  .chip{
+    font-size:11px; padding:6px 12px; border-radius:10px;
+    background:linear-gradient(180deg,#20242d,#14171d);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 2px 5px rgba(0,0,0,.5);
+  }
+  .chip.gold{border:1px solid var(--gold-d); color:var(--gold-t)}
+  .chip.blue{border:1px solid #2f5b7a; color:#7fc0e8}
+  .chip.plain{border:1px solid var(--line2); color:var(--tx2)}
+  .card + .card{margin-top:13px}
   .card{
-    background:var(--card); border:1.5px solid var(--gold); border-radius:20px; padding:16px;
+    background:var(--card); border:1px solid #2f3644; border-radius:20px; padding:16px;
     box-shadow:0 0 0 1px rgba(201,161,60,.18), 0 0 26px rgba(201,161,60,.22),
                0 10px 26px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,232,170,.14);
   }
   h1{
-    margin:0; font-size:26px; letter-spacing:.16em; font-weight:600; text-align:center;
-    background:linear-gradient(180deg,#fbeec2,#f2d78f 45%,#b8862a);
+    margin:0; font-size:29px; letter-spacing:.19em; font-weight:800; text-align:center;
+    background:linear-gradient(180deg,#f7d264,#e8b62f 55%,#d9a520);
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   .badge{
-    display:block; width:fit-content; margin:9px auto 0; border:1px solid var(--gold-d);
-    border-radius:99px; padding:5px 15px; font-size:10px; letter-spacing:.1em; color:var(--gold-t);
+    display:block; width:fit-content; margin:14px auto 0; border:1px solid rgba(224,178,58,.6);
+    border-radius:99px; padding:8px 20px; font-size:11px; letter-spacing:.11em; color:var(--gold-t);
     box-shadow:inset 0 1px 0 rgba(255,232,170,.12), 0 0 12px rgba(201,161,60,.14);
   }
   .rowhead{display:flex; justify-content:space-between; align-items:center; margin-top:16px; gap:8px}
@@ -38,9 +71,9 @@
   .pills{display:flex; gap:7px}
   button{font-family:inherit; cursor:pointer}
   .pill{
-    background:linear-gradient(180deg,#252932,#171a21); border:1px solid var(--line2);
-    border-radius:11px; padding:7px 13px; font-size:11.5px; color:var(--tx);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 3px 6px rgba(0,0,0,.6);
+    background:linear-gradient(180deg,#2b3038,#15181e); border:1px solid var(--line2);
+    border-bottom:2px solid #0c0e12; border-radius:11px; padding:7px 13px; font-size:11.5px; color:var(--tx);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.13), 0 4px 8px rgba(0,0,0,.65);
   }
   .pill:active{transform:translateY(1px)}
   .ic{
@@ -93,11 +126,12 @@
   details b{color:var(--tx2); font-weight:600}
   .go{
     width:100%; margin-top:15px; padding:14px; border-radius:13px; font-size:13.5px; letter-spacing:.04em;
-    color:#241a05; background:linear-gradient(180deg,#fbeec2,#e9cd7d 40%,#c08f24);
-    border:1px solid #d8b45a; border-bottom:3px solid #7d5a12; font-weight:600;
-    box-shadow:0 0 22px rgba(201,161,60,.32), inset 0 1px 0 rgba(255,255,255,.5);
+    color:#2a1c02; background:linear-gradient(180deg,#fff6cf,#f6cf59 42%,#c9930f);
+    border:1px solid #f0d98a; border-bottom:5px solid #6d4a06; font-weight:700;
+    box-shadow:0 0 30px rgba(224,178,58,.42), 0 6px 14px rgba(0,0,0,.6),
+               inset 0 2px 0 rgba(255,255,255,.65), inset 0 -3px 6px rgba(120,80,4,.35);
   }
-  .go:active{transform:translateY(2px); border-bottom-width:1px}
+  .go:active{transform:translateY(3px); border-bottom-width:2px; box-shadow:0 0 14px rgba(224,178,58,.3), inset 0 2px 6px rgba(120,80,4,.4)}
   .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:12px}
   .stat{text-align:center; background:#0f1116; border:1px solid var(--line); border-radius:10px; padding:7px}
   .stat span{display:block; font-size:8.5px; color:var(--tx3)}
@@ -110,11 +144,12 @@
   pre.empty{display:flex; align-items:center; justify-content:center; text-align:center; color:var(--tx3); white-space:normal}
   .acts{display:flex; gap:10px; margin-top:11px}
   .act{
-    flex:1; text-align:center; background:linear-gradient(180deg,#252932,#171a21);
-    border:1px solid var(--line2); border-radius:13px; padding:12px; font-size:12px; color:var(--tx);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 4px 8px rgba(0,0,0,.6);
+    flex:1; text-align:center; background:linear-gradient(180deg,#2b3038,#15181e);
+    border:1px solid var(--line2); border-bottom:3px solid #0c0e12; border-radius:13px;
+    padding:12px; font-size:12px; color:var(--tx);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.13), 0 5px 10px rgba(0,0,0,.65);
   }
-  .act:active{transform:translateY(1px)}
+  .act:active{transform:translateY(2px); border-bottom-width:1px}
   .list{margin-top:12px; display:none}
   .list.on{display:block}
   .listhead{font-size:10.5px; color:var(--tx3); margin:0 0 8px}
@@ -124,7 +159,23 @@
   .arow.off input[type=text]{opacity:.4}
   .log{margin-top:10px; font-size:10.5px; color:var(--tx3); border-left:2px solid #3a3222; padding-left:9px; max-height:120px; overflow:auto}
   .log .bad{color:var(--bad)} .log .ok{color:var(--ok)}
-  .foot{margin-top:15px; text-align:center; font-size:10px; color:#6a707d}
+  .privacy{margin-top:14px; text-align:center; font-size:10px; color:#6a707d; line-height:1.5}
+  .credit-wrap{display:flex; justify-content:center; margin-top:12px}
+  .credit{
+    display:flex; align-items:center; gap:11px; padding:9px 9px 9px 18px; border-radius:99px;
+    background:linear-gradient(180deg,#1b2230,#0d1219); border:1px solid #2c3646;
+    border-bottom:3px solid #070a0f; font-size:12px; font-weight:600; color:#e7ecf5;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10), 0 6px 14px rgba(0,0,0,.7);
+  }
+  .credit .sep{width:1px; height:18px; background:#2c3646; display:block}
+  .cbtn{
+    width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg,#242c3a,#131922); border:1px solid #38445a;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 3px 6px rgba(0,0,0,.6);
+  }
+  .cbtn svg{width:15px; height:15px; fill:#dfe6f2}
+  .cbtn:active{transform:translateY(1px)}
+  .foot{margin-top:11px; text-align:center; font-size:10px; color:#6a707d}
   .foot a{color:var(--gold-t); text-decoration:none}
   .toast{
     position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#1c1f27;
@@ -138,13 +189,17 @@
 </style>
 </head>
 <body>
-<div class="wrap"><div class="card">
+<div class="wrap">
 
+<div class="card head-card">
   <h1>CASSANOVA</h1>
   <div class="badge">SING-BOX MULTI AKUN · ANDROID</div>
+</div>
+
+<div class="card">
 
   <div class="rowhead">
-    <span>LINK AKUN</span>
+    <span>📝 LINK AKUN</span>
     <div class="pills">
       <button class="pill" id="btnPaste"><svg class="ic" style="color:var(--gold-t)" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg> Tempel</button>
       <button class="pill" id="btnClear"><svg class="ic" style="color:var(--bad)" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 13a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-13M9 7V4h6v3"/></svg> Bersihkan</button>
@@ -167,21 +222,13 @@
     <p class="desc" id="dVer"></p>
   </div>
 
-  <div class="two">
-    <div class="fld">
-      <div class="lbl">Dashboard</div>
-      <div class="sel-wrap"><select id="ui">
-        <option value="metacubexd" selected>metacubexd</option>
-        <option value="dashboard">dashboard</option>
-      </select></div>
-      <p class="desc" id="dUi"></p>
-    </div>
-    <div class="fld">
-      <div class="lbl">Alamat dashboard</div>
-      <input type="text" id="ctrl" value="127.0.0.40:9090" inputmode="numeric">
-      <p class="desc">Buka di browser lewat /ui saat VPN nyala.</p>
-      <p class="warn" id="wCtrl">Format keliru. Contoh benar: 127.0.0.40:9090</p>
-    </div>
+  <div class="fld">
+    <div class="lbl">Tampilan dashboard</div>
+    <div class="sel-wrap"><select id="ui">
+      <option value="metacubexd" selected>metacubexd</option>
+      <option value="dashboard">Yacd</option>
+    </select></div>
+    <p class="desc" id="dUi"></p>
   </div>
 
   <div class="two">
@@ -250,13 +297,17 @@
     <p><b>Bendera bawaan.</b> Lokasi tidak bisa ditebak dari IP karena Cloudflare memakai anycast. Bendera diambil dari nama akun atau nama host, misalnya sgdo1 dibaca sebagai Singapura. Yang tidak terbaca memakai bendera bawaan ini.</p>
     <p><b>WhatsApp jalur langsung.</b> Menambah aturan nama paket com.whatsapp supaya keluar lewat direct. Aturan ini diletakkan di atas aturan QUIC, jadi WhatsApp aman walaupun semua UDP 443 diblokir.</p>
     <p><b>Bagi akun ke beberapa grup.</b> Sing-box tidak punya load balance seperti Clash, jadi cara yang setara adalah membagi akun ke beberapa grup Auto. Tiap grup memegang akun berbeda, dan Anda bisa berpindah grup lewat dashboard kalau satu grup terasa melambat. Kalau dimatikan, semua akun masuk satu grup dan pilihan jumlah grup diabaikan.</p>
-    <p><b>Pisahkan grup per protokol.</b> Akun port 80 tidak melakukan jabat tangan TLS, jadi ping-nya hampir selalu paling rendah dan akan selalu menang kalau dicampur dalam satu pengujian. Dipisah supaya VLESS TLS, VLESS non-TLS, VMess, dan Trojan masing-masing punya juara sendiri.</p>
+    <p><b>Pisahkan grup per protokol.</b> Akun VLESS port 80 tidak melakukan jabat tangan TLS, jadi ping-nya hampir selalu paling rendah dan akan selalu menang kalau dicampur dalam satu pengujian. Karena itu VLESS dipisah menjadi grup TLS dan non-TLS. VMess dan Trojan cukup satu grup per protokol. Grup hanya terbentuk kalau akunnya memang ada.</p>
     <p><b>Lewati verifikasi sertifikat.</b> Sama dengan allowInsecure di v2rayNG. Sertifikat tetap dipakai untuk mengenkripsi, hanya kecocokan namanya yang tidak diperiksa. Untuk akun lewat IP bug yang SNI-nya satu tingkat subdomain, biasanya tetap lolos meski pilihan ini dimatikan.</p>
   </details>
 
   <button class="go" id="btnGo">⚡ BUAT CONFIG SING-BOX</button>
 
-  <div class="divider"><i></i><span>HASIL CONFIG</span><i></i></div>
+</div>
+
+<div class="card">
+
+  <div class="divider"><i></i><span>✨ HASIL CONFIG</span><i></i></div>
 
   <div class="stats">
     <div class="stat"><span>Total</span><b id="sAll">0</b></div>
@@ -280,8 +331,17 @@
 
   <div class="log" id="log"></div>
 
-  <div class="foot">Semua diproses di HP ini. Link akun tidak dikirim ke mana pun dan tidak ikut tersimpan.<br>
-    © 2026 By: Amier Cassanova · <a href="https://t.me/kang_rebahan">Telegram</a></div>
+  <div class="privacy">Semua diproses di HP ini. Link akun tidak dikirim ke mana pun dan tidak ikut tersimpan.</div>
+
+  <div class="credit-wrap">
+    <div class="credit">
+      <span>by: amiercassanova</span>
+      <i class="sep"></i>
+      <a class="cbtn" href="https://t.me/kang_rebahan" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M21.5 4.3 2.9 11.4c-.9.3-.9 1.6.1 1.9l4.6 1.4 1.8 5.4c.3.8 1.3 1 1.9.4l2.5-2.4 4.6 3.4c.7.5 1.7.1 1.9-.7l3.2-14.4c.2-.9-.7-1.6-1.5-1.3z"/></svg></a>
+      <a class="cbtn" href="https://wa.link/3yhb8f" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.8 1.2-.5 0-1 .2-3.4-.8-2.9-1.2-4.7-4.2-4.8-4.4-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2c.1.2.1.4 0 .6l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.8-1c.2-.2.3-.2.6-.1l2 .9c.2.1.4.2.4.4v.4z"/></svg></a>
+    </div>
+  </div>
+  <div class="foot">© 2026 By: Amier Cassanova</div>
 
 </div></div>
 <div class="toast" id="toast"></div>
@@ -298,7 +358,8 @@ const VER = {
   "sfa-112":{core:112, file:"config-sfa-112.json", note:"Aplikasi resmi SagerNet versi lama, mesin 1.12."}
 };
 const D = {
-  ui:{ metacubexd:"Folder di HP harus bernama metacubexd.", dashboard:"Folder di HP harus bernama dashboard." },
+  ui:{ metacubexd:"File diunduh otomatis. Buka di http://127.0.0.40:9090/ui saat VPN nyala.",
+       dashboard:"Folder dashboard di HP harus sudah berisi file Yacd. Buka di http://127.0.0.1:9090/ui saat VPN nyala." },
   grp:{ "1":"Semua akun bersaing dalam satu grup.", "2":"Akun dibagi dua, beban tersebar.",
         "3":"Akun dibagi tiga: Primary, Backup, Tertiary.", "4":"Akun dibagi empat, paling menyebar." },
   spd:{ fast:"Cepat pindah kalau server mati. Baterai boros.", mid:"Seimbang untuk akun sedikit.",
@@ -309,7 +370,7 @@ const D = {
   flag:{ "":"Akun yang lokasinya tak terbaca dibiarkan polos.", "🇸🇬":"Akun yang tak terbaca dianggap Singapura.",
          "🇮🇩":"Akun yang tak terbaca dianggap Indonesia." },
   lb:{ on:"Akun disebar ke Primary, Backup, Tertiary.", off:"Semua akun masuk satu grup Auto Tercepat." },
-  split:{ on:"VLESS, VMess, dan Trojan punya grup sendiri.", off:"Semua protokol dicampur dalam satu grup." },
+  split:{ on:"VLESS TLS, VLESS non-TLS, VMess, dan Trojan punya grup sendiri.", off:"Semua protokol dicampur dalam satu grup." },
   wa:{ on:"WhatsApp keluar dari tunnel, chat dan telepon lancar.", off:"WhatsApp ikut tunnel seperti aplikasi lain." },
   ins:{ on:"Sambungan jalan walau sertifikat tak cocok. Pilih ini kalau ragu.",
         off:"Sertifikat diperiksa ketat. Kalau akun gagal connect, centang lagi." }
@@ -322,7 +383,7 @@ function toast(m,bad){
   t.classList.add("on"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("on"),2300);
 }
 const SET_KEY="cassanova_singbox_setting";
-const SET_IDS=["ver","ui","ctrl","grp","spd","quic","flag"];
+const SET_IDS=["ver","ui","grp","spd","quic","flag"];
 const SET_CHK=["oLb","oSplit","oWa","oIns"];
 function saveSet(){
   try{
@@ -353,16 +414,13 @@ function sync(){
   $("dWa").textContent = $("oWa").checked ? D.wa.on : D.wa.off;
   $("dIns").textContent = $("oIns").checked ? D.ins.on : D.ins.off;
   $("wQuic").classList.toggle("on", $("quic").value==="all" && !$("oWa").checked);
-  $("wCtrl").classList.toggle("on", !okCtrl($("ctrl").value));
   saveSet();
 }
-function okCtrl(v){
-  const m = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3}):(\d{2,5})$/.exec(v.trim());
-  if(!m) return false;
-  for(let i=1;i<=4;i++) if(+m[i]>255) return false;
-  const p=+m[5]; return p>0 && p<65536;
-}
-["ver","ui","grp","spd","quic","flag","oLb","oSplit","oWa","oIns","ctrl"].forEach(id=>{
+const UI_CFG={
+  metacubexd:{ folder:"metacubexd", ctrl:"127.0.0.40:9090", dl:true },
+  dashboard:{ folder:"dashboard", ctrl:"127.0.0.1:9090", dl:false }
+};
+["ver","ui","grp","spd","quic","flag","oLb","oSplit","oWa","oIns"].forEach(id=>{
   $(id).addEventListener("change", sync); $(id).addEventListener("input", sync);
 });
 
@@ -546,11 +604,14 @@ function build(accs, o, override){
     },
     experimental:{
       cache_file:{ enabled:true, path:"cache.db", cache_id:"cassa"+accs.length+"-"+core },
-      clash_api:{
-        external_controller:o.ctrl, external_ui:o.ui,
-        external_ui_download_url:"https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
-        default_mode:"rule", access_control_allow_origin:"*"
-      }
+      clash_api:(()=>{
+        const u=UI_CFG[o.ui]||UI_CFG.metacubexd;
+        const c={ external_controller:u.ctrl, external_ui:u.folder };
+        if(u.dl) c.external_ui_download_url="https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip";
+        c.default_mode="rule";
+        c.access_control_allow_origin="*";
+        return c;
+      })()
     }
   };
 }
@@ -558,7 +619,7 @@ function build(accs, o, override){
 let ACCS=[], ROWS=[];
 
 function readOpt(){
-  return { ver:$("ver").value, ui:$("ui").value, ctrl:$("ctrl").value.trim(),
+  return { ver:$("ver").value, ui:$("ui").value,
     grp:parseInt($("grp").value,10), spd:$("spd").value, quic:$("quic").value, flag:$("flag").value,
     lb:$("oLb").checked, split:$("oSplit").checked, wa:$("oWa").checked, ins:$("oIns").checked };
 }
@@ -586,7 +647,6 @@ function renderRows(){
 }
 function regen(){
   if(!ACCS.length) return toast("Belum ada akun",true);
-  if(!okCtrl($("ctrl").value)){ sync(); return toast("Alamat dashboard keliru",true); }
   const o=readOpt(), keep=[], names=[];
   ROWS.forEach((r,i)=>{ if(r.on){ keep.push(ACCS[i]); names.push(r.tag.trim()||null); } });
   if(!keep.length) return toast("Semua akun dimatikan",true);
@@ -598,7 +658,6 @@ function regen(){
 }
 
 function run(){
-  if(!okCtrl($("ctrl").value)){ sync(); return toast("Alamat dashboard keliru",true); }
   const lines=expand($("uri").value);
   if(!lines.length) return toast("Belum ada link yang ditempel",true);
 
