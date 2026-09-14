@@ -363,7 +363,7 @@ const D = {
   grp:{ "1":"Semua akun bersaing dalam satu grup.", "2":"Akun dibagi dua, beban tersebar.",
         "3":"Akun dibagi tiga: Primary, Backup, Tertiary.", "4":"Akun dibagi empat, paling menyebar." },
   spd:{ fast:"Cepat pindah kalau server mati. Baterai boros.", mid:"Seimbang untuk akun sedikit.",
-        slow:"Hemat baterai. Cocok untuk akun banyak." },
+        slow:"Hemat baterai, tetap responsif pindah server. Cocok untuk akun banyak." },
   quic:{ video:"YouTube, TikTok, dan Instagram dipaksa lewat tunnel supaya kuota utama tidak terpakai. Aplikasi lain, termasuk video call, tetap bebas.",
          all:"Semua aplikasi dipaksa turun ke TCP dan lewat tunnel. Paling hemat kuota utama, tapi video call aplikasi lain bisa melambat.",
          off:"Tidak ada yang dipaksa. Trafik UDP bisa lolos keluar tunnel, jadi kuota utama ikut terpakai." },
@@ -534,7 +534,7 @@ function outboundOf(a, tag, ins){
   return o;
 }
 
-const SPEED={ fast:{interval:"20s",tolerance:5}, mid:{interval:"1m",tolerance:50}, slow:{interval:"5m",tolerance:200} };
+const SPEED={ fast:{interval:"20s",tolerance:5}, mid:{interval:"1m",tolerance:50}, slow:{interval:"5m",tolerance:50} };
 const GNAME=["🎯 Primary Group","🎯 Backup Group","🎯 Tertiary Group","🎯 Quartet Group"];
 const KIND={ TLS:["🔒 Auto VLESS TLS"], NTLS:["🔓 Auto VLESS NTLS"], VMESS:["🛡️ Auto VMess"], TRJ:["🐴 Auto Trojan"] };
 const QDOM=["googlevideo.com","youtube.com","youtu.be","ytimg.com","tiktokcdn.com","tiktokv.com",
